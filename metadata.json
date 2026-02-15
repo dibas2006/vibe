@@ -1,6 +1,6 @@
 {
-  "name": "Copy of Aura AI Multi-Tool",
-  "description": "A comprehensive AI creative suite powered by Gemini. Features intelligent chat with search grounding, high-fidelity image generation, cinematic video creation with Veo, and expressive text-to-speech.",
+  "name": "Vanguard AI: CSIT & British Army Prep",
+  "description": "An elite AI-powered daily routine planner for BSC CSIT students balancing technical mastery and British Army physical training.",
   "requestFramePermissions": [
     "camera",
     "microphone"

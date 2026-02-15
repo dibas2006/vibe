@@ -8,44 +8,65 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolSelect }) => {
-  const navItems = [
-    { type: ToolType.CHAT, label: 'Chat & Search', icon: 'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z' },
-    { type: ToolType.IMAGE, label: 'Image Creator', icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z' },
-    { type: ToolType.VIDEO, label: 'Veo Cinema', icon: 'M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z' },
-    { type: ToolType.SPEECH, label: 'Speech Synthesis', icon: 'M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z' },
+  const primaryNav = [
+    { type: ToolType.DASHBOARD, label: 'Overview', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3' },
+    { type: ToolType.ROUTINE, label: 'Daily Ops', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' },
+    { type: ToolType.JOURNAL, label: 'Journal', icon: 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z' },
+    { type: ToolType.TRAINING, label: 'Army Prep', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
+    { type: ToolType.ACADEMICS, label: 'CSIT Lab', icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18' },
+  ];
+
+  const intelligenceNav = [
+    { type: ToolType.ANALYTICS, label: 'Intel Report', icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2' },
+    { type: ToolType.COMMAND_CHAT, label: 'Command Chat', icon: 'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z' },
+    { type: ToolType.FOCUS, label: 'Focus Mode', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' },
+    { type: ToolType.PHYSIQUE_LOG, label: 'Physique Log', icon: 'M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z' },
   ];
 
   return (
-    <aside className="w-20 md:w-64 glass border-r border-slate-800 flex flex-col items-center md:items-stretch py-8 shrink-0">
-      <div className="px-6 mb-10 hidden md:block">
-        <h2 className="text-2xl font-bold tracking-tighter text-white flex items-center gap-2">
-          <span className="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center">A</span>
-          AURA
+    <aside className="w-20 md:w-64 glass border-r border-slate-800 flex flex-col items-center md:items-stretch py-6 shrink-0 z-50">
+      <div className="px-6 mb-8 hidden md:block">
+        <h2 className="text-xl font-black tracking-tighter text-white flex items-center gap-2 italic">
+          <span className="w-8 h-8 rounded bg-indigo-600 flex items-center justify-center text-xs not-italic">V</span>
+          VANGUARD
         </h2>
       </div>
 
-      <nav className="flex-1 space-y-2 px-3">
-        {navItems.map((item) => (
-          <button
-            key={item.type}
-            onClick={() => onToolSelect(item.type)}
-            className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 group ${
-              activeTool === item.type 
-                ? 'bg-indigo-600/20 text-indigo-400 ring-1 ring-indigo-500/50' 
-                : 'text-slate-400 hover:bg-slate-800/50 hover:text-white'
-            }`}
-          >
-            <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={item.icon} />
-            </svg>
-            <span className="hidden md:block font-medium text-sm">{item.label}</span>
-          </button>
-        ))}
-      </nav>
+      <div className="flex-1 space-y-8 overflow-y-auto px-3">
+        <div>
+          <div className="px-4 mb-2 hidden md:block text-[10px] font-bold text-slate-600 tracking-[0.2em] uppercase">Operations</div>
+          <nav className="space-y-1">
+            {primaryNav.map((item) => (
+              <button
+                key={item.type}
+                onClick={() => onToolSelect(item.type)}
+                className={`w-full flex items-center gap-4 px-4 py-2.5 rounded-lg transition-all duration-200 group ${
+                  activeTool === item.type ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20' : 'text-slate-500 hover:bg-slate-800/50 hover:text-white'
+                }`}
+              >
+                <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} /></svg>
+                <span className="hidden md:block font-bold text-[11px] uppercase tracking-wider">{item.label}</span>
+              </button>
+            ))}
+          </nav>
+        </div>
 
-      <div className="mt-auto px-6 hidden md:block">
-        <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-800 text-xs text-slate-500">
-          Powered by Gemini 3.0 & Veo 3.1
+        <div>
+          <div className="px-4 mb-2 hidden md:block text-[10px] font-bold text-slate-600 tracking-[0.2em] uppercase">Intelligence</div>
+          <nav className="space-y-1">
+            {intelligenceNav.map((item) => (
+              <button
+                key={item.type}
+                onClick={() => onToolSelect(item.type)}
+                className={`w-full flex items-center gap-4 px-4 py-2.5 rounded-lg transition-all duration-200 group ${
+                  activeTool === item.type ? 'bg-amber-600 text-white shadow-lg shadow-amber-500/20' : 'text-slate-500 hover:bg-slate-800/50 hover:text-white'
+                }`}
+              >
+                <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} /></svg>
+                <span className="hidden md:block font-bold text-[11px] uppercase tracking-wider">{item.label}</span>
+              </button>
+            ))}
+          </nav>
         </div>
       </div>
     </aside>

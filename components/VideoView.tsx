@@ -15,13 +15,15 @@ const VideoView: React.FC = () => {
   }, []);
 
   const checkKey = async () => {
-    const selected = await window.aistudio.hasSelectedApiKey();
-    setHasKey(selected);
+    // Fix: Using optional chaining for aistudio property access
+    const selected = await window.aistudio?.hasSelectedApiKey();
+    setHasKey(!!selected);
   };
 
   const handleOpenKeyPicker = async () => {
-    await window.aistudio.openSelectKey();
-    setHasKey(true); // Proceed as per instructions (assume success)
+    // Fix: Using optional chaining for aistudio method call
+    await window.aistudio?.openSelectKey();
+    setHasKey(true); // Proceed as per instructions (assume success after triggering)
   };
 
   const handleGenerate = async () => {
