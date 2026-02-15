@@ -1,0 +1,8 @@
+{
+  "name": "Copy of Aura AI Multi-Tool",
+  "description": "A comprehensive AI creative suite powered by Gemini. Features intelligent chat with search grounding, high-fidelity image generation, cinematic video creation with Veo, and expressive text-to-speech.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
